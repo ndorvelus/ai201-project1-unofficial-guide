@@ -64,11 +64,116 @@
 
 | # | Source document | Chunk text |
 |---|----------------|------------|
-| 1 | | |
-| 2 | | |
-| 3 | | |
-| 4 | | |
-| 5 | | |
+ https://howard.mydininghub.com/en/locations| Chunk 1 | | | Locations & Menus
+Enjoy delicious meals, coffee, snacks, and more at these dining locations.
+Dining Halls
+Restaurants
+Coffee
+Convenience
+All Locations
+1867 Café
+6th St NW, Washington, DC 20059
+Washington, DC 20059
+Opens on 9/3 at 8:00AM
+CLOSED
+Bethune Annex Café
+2225 4th Street Northwest
+Washington, DC 20059
+Dinner 4:00PM-10:00PM
+OPEN
+Bison Brew
+500 Howard Place Northwest
+Washington, DC 20059
+All Day 8:00AM-8:00PM
+OPEN
+Blackburn Café
+Blackburn Student Center
+2397 6th Street Northwest
+Washington, DC 20059
+Dinner 4:00PM-10:00PM
+OPEN
+Chick-Fil-A
+Blackburn Student Center
+2397 6th Street Northwest
+Washington, DC 20059
+All Day 8:30AM-9:00PM
+OPEN
+Everbowl
+Blackburn Student Center
+2397 6th Street Northwest
+Washington, DC 20059
+
+https://howard.mydininghub.com/en/meal-plans/meal-plan-options?cat=diningdollars-216958| Chunk 2 | | | drinks—enjoy flexibility, save time, and stay within your budget!
+View Mecca Dollar Plans
+Which Meal Plan is Right for You? Use our personalized tool to discover the best meal plan to fit your lifestyle.
+Find Your Fit
+Campus Dining Made Easy
+Meal plans come in all shapes and sizes. Check them out and find what fits best for your schedule!
+View Meal Plans
+Getting Started With a Meal Plan
+Make the most of your meal plan with the tips and tools to help you manage.
+Your Campus Dining Experience
+Discover seamless access to great food and ultimate campus dining convenience.
+Discover Howard University Hospitality Services
+Enjoy the Perks
+Own your mealtime with ease, savings, and budget clarity!
+Super Convenient
+Swipe, eat, and enjoy. With your meal plan, navigating campus dining has never been simpler - saving you time for what matters most.
+Smart Savings
+Get more value from every meal. With locked in rates and prepaid convenience, your meal plan makes dining more affordable.
+Budget With Ease
+Know what you're spending upfront—no surprises, just delicious meals. Enjoy dining without the financial guesswork.
+All For You
+Connect with your campus community through student events, tastings, and themed menus that make dining more than just a meal.
+Only The Best
+Enjoy chef-inspired menus featuring fresh, local, and sustainable ingredients, ensuring quality and variety in every bite.
+Tools to Thrive
+
+https://auxiliary.howard.edu/services/bison-one-card/where-use-your-card | Chunk 3 | | |  Card Portal.
+Bison One Card holders must grant access to family and friends using the
+Bison One Card Portal.
+a. To utilize the Bison Bucks Account on the Bison One Card, cardholders present their Bison One Card to participating merchants as payment for products and services.
+b.
+An updated list of participating merchants is available on the
+Bison One Card Portal.
+c.
+Cardholders may not permit another person to use their Bison One Card for purchases or any other reason.
+Any remaining monies in the Bison Bucks account that have not been used will be forfeited after a one (1) year period of inactivity on the Bison Bucks account. Bison Bucks are non-refundable
+a.
+Funds in the Bison Bucks account cannot be transferred to any other Bison One Card account.
+a.
+Cardholders are responsible for all charges and obligations incurred on their card, and for all funds placed into their account. Cardholders may cancel the card on line at any time by visiting the
+Bison One Card Portal
+. Then contact the Bison One Card Office immediately.
+b.
+
+https://auxiliary.howard.edu/services/bison-one-card/laundry| Chunk 4 | | | Laundry
+Laundry facilities are available in each residence hall on campus.
+Laundry machines only accept Laundry Points and Bison Bucks for payment. Resident student have a set amount of funds deposited into their Laundry Points account which is accessible with the use of their BisonCard. Students who have exhausted their Laundry Points accounts balance, will need to deposit funds into their Bison Bucks account prior to using the laundry machines.
+Laundry Costs
+Wash $2.00
+Dry $2.00
+Johnson Administration Building
+2400 6th Street NW, Basement Suite 11
+Washington, DC 20059
+Phone: 202-806-2109
+onecard@howard.edu
+Monday – Friday
+10 am - 4 pm
+Excluding observed holidays (
+academic calendar
+Accounts
+Bison One Card eAccounts
+Laundry Points FAQs
+When the semester starts, you receive all of your laundry points to be used for that semester.
+Laundry points are sufficient for washing your clothes throughout the semester, and the University provides this service at no cost to our students.
+If you go beyond two large loads per week, you will need to use Bison Bucks for laundry for the remainder of the semester.
+
+Reddit | Chunk 5 | | | Real cost of living while attending Howard?
+Hi guys,
+After recieving a response from Howard and talking to their counselor I am a little more encouraged and confident about applying to Howard next year and hopefully getting addmitted.
+I'm wondering though, how much is your real cost of living? The cost sheet they have presented me with states 19k A YEAR! But that does not sound realistic at all. So I'd like to hear from those that do not live in dorms, how much is your yearly cost of living? Rent/transport/food/lifestyle...Do you have a car? And if so how much are you paying for parking in and off campus.
+Just trying to plan and be prepared. So any additional info/tips you think might be helpful is very welcome.
 
 ---
 

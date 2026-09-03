@@ -1,0 +1,5 @@
+SOURCE_ID: 10-i_couldnt_find_the_book_so_i_wrote_it
+URL: https://www.reddit.com/r/HowardUniversity/comments/1vzeflg/i_couldnt_find_the_book_so_i_wrote_it/
+DESCRIPTION: r/HowardUniversity subreddit (top + hot posts)
+---
+I couldn’t find the book, so I wrote it.

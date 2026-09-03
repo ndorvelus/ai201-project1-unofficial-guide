@@ -1,0 +1,5 @@
+SOURCE_ID: 10-hbcu_sports_scholarships
+URL: https://www.reddit.com/r/HowardUniversity/comments/1vkl16g/hbcu_sports_scholarships/
+DESCRIPTION: r/HowardUniversity subreddit (top + hot posts)
+---
+HBCU Sports & Scholarships

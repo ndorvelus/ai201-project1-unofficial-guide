@@ -1,0 +1,11 @@
+id,url,description,fetch
+1,https://howard.mydininghub.com/en/locations,Howard dining locations,playwright
+2,https://howard.mydininghub.com/en/meal-plans/meal-plan-options?cat=diningdollars-216958,Dining Dollars / Mecca Dollars meal plan details,playwright
+3,https://howard.mydininghub.com/en/meal-plans,Meal plans overview,playwright
+4,https://auxiliary.howard.edu/services/bison-one-card/where-use-your-card,Where to use Bison One Card,requests
+5,https://studentaffairs.howard.edu/housing/move-in/bison-one-card-meal-plans,Bison One Card meal plans (Housing),requests
+6,https://auxiliary.howard.edu/services/bison-one-card/mobile-apps,Bison One Card mobile apps,requests
+7,https://auxiliary.howard.edu/services/bison-one-card/summer-programs-and-summer-stay-guests,Summer programs and summer stay guests,requests
+8,https://auxiliary.howard.edu/services/bison-one-card/terms-conditions,Bison One Card terms and conditions,requests
+9,https://auxiliary.howard.edu/services/bison-one-card/laundry,Laundry services via Bison One Card,requests
+10,https://www.reddit.com/r/HowardUniversity/,r/HowardUniversity subreddit (top + hot posts),reddit

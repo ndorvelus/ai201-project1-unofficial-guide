@@ -1,0 +1,77 @@
+SOURCE_ID: 1
+URL: https://howard.mydininghub.com/en/locations
+DESCRIPTION: Howard dining locations
+---
+Locations & Menus
+Enjoy delicious meals, coffee, snacks, and more at these dining locations.
+Dining Halls
+Restaurants
+Coffee
+Convenience
+All Locations
+1867 Café
+6th St NW, Washington, DC 20059
+Washington, DC 20059
+Opens on 9/3 at 8:00AM
+CLOSED
+Bethune Annex Café
+2225 4th Street Northwest
+Washington, DC 20059
+Dinner 4:00PM-10:00PM
+OPEN
+Bison Brew
+500 Howard Place Northwest
+Washington, DC 20059
+All Day 8:00AM-8:00PM
+OPEN
+Blackburn Café
+Blackburn Student Center
+2397 6th Street Northwest
+Washington, DC 20059
+Dinner 4:00PM-10:00PM
+OPEN
+Chick-Fil-A
+Blackburn Student Center
+2397 6th Street Northwest
+Washington, DC 20059
+All Day 8:30AM-9:00PM
+OPEN
+Everbowl
+Blackburn Student Center
+2397 6th Street Northwest
+Washington, DC 20059
+All Day 11:00AM-10:00PM
+OPEN
+202 Market
+Blackburn Student Center
+2397 6th Street Northwest
+Washington, DC 20059
+All Day 7:00AM-8:00PM
+OPEN
+The Halal Shack
+Blackburn Student Center, Punchout
+2397 6th Street Northwest
+Washington, DC 20059
+All Day 11:00AM-10:00PM
+OPEN
+The Market at Bethune Annex
+2225 4th Street Northwest
+Washington, DC 20059
+All Day 7:00AM-10:00PM
+OPEN
+The Market at West Tower
+2251 Sherman Avenue Northwest
+Washington, DC 20001
+All Day 8:00AM-11:00PM
+OPEN
+The Drop at Punchout
+Blackburn Student Center, Punchout
+2397 6th Street Northwest
+Washington, DC 20059
+All Day 11:00AM-10:00PM
+OPEN
+Bison Bread Co.
+2900 Van Ness St NW.
+Washington, DC 20008
+Opens on 9/3 at 7:30AM
+CLOSED

@@ -1,0 +1,15 @@
+SOURCE_ID: 6
+URL: https://auxiliary.howard.edu/services/bison-one-card/mobile-apps
+DESCRIPTION: Bison One Card mobile apps
+---
+Instructions
+Download the app from your app store on your mobile device.
+Open the app
+Create a Grubhub account
+Tap on Account
+Tap on Campus Dining
+Using the search bar type in "Howard University", then select "Howard University" in the drop down list
+Answer a few simple questions
+Enter your HU single sign on (SSO) credentials
+You are all set to use Grubhub with your Bison Bucks account!
+Atrium Campus Connect is the Bison One Card Portal

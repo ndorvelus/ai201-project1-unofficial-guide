@@ -11,7 +11,7 @@
 
 <!-- What domain did you choose? Why is this knowledge valuable and hard to find through official channels? -->
 
----
+--- I chose Howard's dining services, including information on the Bison One Card. This knowledge is valuable because many students may still be unclear about where they can get food, especially since Howard likes to change things up seemingly yearly.
 
 ## Documents
 
@@ -20,17 +20,17 @@
 
 | # | Source | Description | URL or location |
 |---|--------|-------------|-----------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
-
+| 1 | | | | https://howard.mydininghub.com/en/locations
+| 2 | | | | https://howard.mydininghub.com/en/meal-plan/DiningDollars-667627
+| 3 | | | | https://howard.mydininghub.com/en/meal-plans
+| 4 | | | | https://auxiliary.howard.edu/services/bison-one-card/where-use-your-card
+| 5 | | | | https://studentaffairs.howard.edu/housing/move-in/bison-one-card-meal-plans
+| 6 | | | | https://www.instagram.com/bison_hospitality/
+| 7 | | | | https://auxiliary.howard.edu/services/bison-one-card/mobile-apps
+| 8 | | | | https://auxiliary.howard.edu/services/bison-one-card/summer-programs-and-summer-stay-guests
+| 9 | | | | https://auxiliary.howard.edu/services/bison-one-card/terms-conditions
+| 10 | | | | https://auxiliary.howard.edu/services/bison-one-card/laundry
+| 11 | | | | https://www.reddit.com/r/HowardUniversity/
 ---
 
 ## Chunking Strategy
@@ -46,7 +46,7 @@
 
 **Reasoning:**
 
----
+--- 256 chunk size, 15% overlap, Most documents consisted of shorter paragraphs or even single sentences
 
 ## Retrieval Approach
 
@@ -56,13 +56,13 @@
      would you weigh in choosing a different embedding model — context length, multilingual
      support, accuracy on domain-specific text, latency? -->
 
-**Embedding model:**
+**Embedding model:** 
 
 **Top-k:**
 
 **Production tradeoff reflection:**
 
----
+--- Gemini Embedding 2, 5 chunks per query, accuracy and latency would be the top two things I would refine, trading off things like multilingual support to be as fast and accurate as possible.
 
 ## Evaluation Plan
 
@@ -73,11 +73,11 @@
 
 | # | Question | Expected answer |
 |---|----------|-----------------|
-| 1 | | |
-| 2 | | |
-| 3 | | |
-| 4 | | |
-| 5 | | |
+| 1 | | | What meal plans are available to me as a Junior?
+| 2 | | | What dining options are open right now?
+| 3 | | | What do people aay about food at BlackBurn
+| 4 | | | What resturants that are off campus can I use my MP bucks at?
+| 5 | | | Can I only use my Bison One Card for food?
 
 ---
 
@@ -87,9 +87,9 @@
      Consider: noisy or inconsistent documents, missing source attribution, off-topic
      retrieval, chunks that split key information across boundaries. -->
 
-1.
+1.Some of the pages have tabs and retreiving data from them might be difficult.
 
-2.
+2.Pictures might also be a problem for getting chunk information. The off campus partners are in an image on one of the urls.
 
 ---
 
@@ -101,7 +101,7 @@
      You can use ASCII art, a Mermaid diagram, or embed a sketch as an image.
      You'll use this diagram as context when prompting AI tools to implement each stage. -->
 
----
+--- ![alt text](image.png)
 
 ## AI Tool Plan
 
@@ -115,8 +115,29 @@
      "I'll give Claude my Chunking Strategy section and ask it to implement chunk_text()
      with my specified chunk size and overlap" is a plan. -->
 
-**Milestone 3 — Ingestion and chunking:**
+**Milestone 3 — Ingestion and chunking:** 
+AI Tool: Claude 3.5 Sonnet
+
+Input Given: The Documents, Chunking Strategy, and Anticipated Challenges sections from planning.md, along with the Stage 1 & 2 blocks from the architecture diagram. 
+
+Expected Output: Python scripts/functions (scrape_sources(), extract_image_text(), and chunk_text()) that pull raw text from the URLs, parse image text, clean boilerplates, and split the corpus into recursive chunks of 256 tokens with a 38-token (15%) sliding overlap while attaching source metadata to each chunk.
+
+Verification Method: Inspect chunk lengths using tiktoken to confirm that token counts do not exceed 256, verify that adjacent chunks share exactly ~38 overlapping tokens, and test scraping against dynamic/tabbed pages to verify that no core dining hall text or image data is omitted or corrupted.
 
 **Milestone 4 — Embedding and retrieval:**
+AI Tool: Claude 3.5 Sonnet
+
+Input Given: The Retrieval Approach section and Stages 3 & 4 from the architecture diagram, using the embedding model Gemini Embedding 2 and vector database target ChromaDB.
+
+Expected Output: A pipeline script that takes the chunked documents, generates embeddings using the Gemini Embedding API, indexes them into the vector store with cosine similarity metrics, and implements a retrieval function retrieve_context(query, k=5) that returns the top-5 most relevant chunks.
+
+Verification Method: Run a few manual query embeddings and verify via unit tests that retrieve_context(query, k=5) returns exactly 5 documents formatted with similarity scores and metadata.
 
 **Milestone 5 — Generation and interface:**
+AI Tool: Claude 3.5 Sonnet
+
+Input Given: The Evaluation Plan, Stage 5 from the architecture diagram, and instructions for building a simple CLI or Streamlit interface.
+
+Expected Output: A generation module that builds a grounded prompt (System Prompt + Top-5 Chunks + User Query) preventing hallucination, sends it to the generation model Claude, displays the cited answer in the user interface (Streamlit / CLI), and a test runner script.
+
+Verification Method: Execute the 5 evaluation questions from the plan against the running interface; compare generated answers directly against the expected outputs, ensuring the LLM cites retrieved chunks and refuses to answer off-domain queries without source context.

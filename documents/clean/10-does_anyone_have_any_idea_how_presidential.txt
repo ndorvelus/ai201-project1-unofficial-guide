@@ -1,0 +1,6 @@
+SOURCE_ID: 10-does_anyone_have_any_idea_how_presidential
+URL: https://www.reddit.com/r/HowardUniversity/comments/1vosxsg/does_anyone_have_any_idea_how_presidential/
+DESCRIPTION: r/HowardUniversity subreddit (top + hot posts)
+---
+Does anyone have any idea how presidential scholars get access to the book stipend?
+I’ve been getting told conflicting information from the bookstore and Financial Aid

@@ -1,0 +1,5 @@
+SOURCE_ID: 10-questions_about_howard_financial_aid
+URL: https://www.reddit.com/r/HowardUniversity/comments/1vihljs/questions_about_howard_financial_aid/
+DESCRIPTION: r/HowardUniversity subreddit (top + hot posts)
+---
+Questions About Howard Financial Aid
