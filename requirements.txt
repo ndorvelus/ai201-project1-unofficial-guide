@@ -9,9 +9,7 @@ beautifulsoup4==4.12.3
 tiktoken==0.14.0
 playwright==1.55.0  # needed for JS-rendered pages (howard.mydininghub.com); run `playwright install chromium` once after installing
 
-# Query interface — add whichever you use for Milestone 5:
-# gradio>=6.9.0
-# streamlit>=1.40.0
+# Query interface (Milestone 5) — scripts/cli.py uses only the standard library
 
 # Document ingestion — add if your documents/ folder contains .pdf files:
 # pdfplumber==0.11.4

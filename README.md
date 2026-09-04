@@ -197,38 +197,44 @@ Just trying to plan and be prepared. So any additional info/tips you think might
      For at least 2 of the 3, explain why the returned chunks are relevant to the query.
      Results must be text — not screenshots. -->
 
-**Query 1:**
+**Query 1: "What meal plans are available to me as a Junior?"**
 
 Top returned chunks:
--
--
--
+#	distance source chunk_idx	preview
+- 1	0.3234	3	0	"Meal Plan Overview... Freshmen Meal Plans Living on campus is..."
+- 2	0.3872	3	1	"...Which Meal Plan is Right for You?..."
+- 3	0.3874	5	5	"...students who live in residence halls that require a meal plan must purchase a specific meal plan (i.e., the Traditional 14). Black..."
 
 Relevance explanation:
 
----
+--- Relevant? Yes — 1 and 2 are the meal-plan overview page itself, and 3–5 discuss meal plan eligibility and requirements. Gap: none of these actually names which specific plan is for Juniors (that detail — "Eligible for Juniors and Seniors... The Yard" — lives in source 2, which never surfaced. It's a good chunk but semantically closer to "Mecca Dollars" than to "Junior," so the embedding didn't rank it top-5.
 
-**Query 2:**
+**Query 2: "What dining options are open right now?"**
 
 Top returned chunks:
--
--
--
+#	distance source chunk_idx	preview
+
+- 1	0.4507	5	5	"...Dining Halls & Meal Plans..."
+- 2	0.4590	3	1	"...Campus Dining Made Easy..."
+- 3	0.4671	4	2	"...Why were these specific changes made to the meal plan?..."
 
 Relevance explanation:
 
----
+--- Relevant? Weak. Only result 4 (source 1, the locations page with live OPEN/CLOSED status) actually answers "what's open right now" — and it's ranked 4th, not 1st. Results 1, 2, 3, 5 are about meal-plan mechanics, not live hours. This is a real retrieval miss: "right now" doesn't have a strong semantic anchor for MiniLM, so it's matching on "dining options" generically rather than on the OPEN/CLOSED status content.
 
-**Query 3:**
+**Query 3: "What do people say about food at Blackburn"**
 
 Top returned chunks:
--
--
--
+#	distance source chunk_idx	preview
+
+
+- 1	0.4438	1	0	dining locations list
+- 2	0.4537	5	3	vegan/vegetarian options at Blackburn
+- 3	0.4603	5	5	Dining Halls & Meal Plans overview
 
 Relevance explanation:
 
----
+--- Relevant? Not really. All 5 chunks are official Howard-produced content about Blackburn's facilities and offerings — none are actual student opinions. The query asks "what do people say," implying Reddit, but zero Reddit chunks appear in the top 5, and the distances here are noticeably worse than queries 1–2 (0.44–0.58 vs. 0.32–0.43). This confirms the retrieval gap flagged earlier: the corpus's 24 Reddit posts don't happen to mention Blackburn by name, so there's genuinely no matching content to retrieve — this isn't a chunking or embedding failure, it's a corpus coverage gap for that specific evaluation question.
 
 ## Grounded Generation
 

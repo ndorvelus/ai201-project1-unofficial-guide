@@ -62,7 +62,7 @@
 
 **Production tradeoff reflection:**
 
---- Gemini Embedding 2, 5 chunks per query, accuracy and latency would be the top two things I would refine, trading off things like multilingual support to be as fast and accurate as possible.
+--- Switched from the originally planned Gemini Embedding 2 to all-MiniLM-L6-v2 via sentence-transformers, run locally rather than as a hosted API — 5 chunks per query. Accuracy and latency would be the top two things I would refine for production, trading off things like multilingual support to be as fast and accurate as possible.
 
 ## Evaluation Plan
 
@@ -75,7 +75,7 @@
 |---|----------|-----------------|
 | 1 | | | What meal plans are available to me as a Junior?
 | 2 | | | What dining options are open right now?
-| 3 | | | What do people aay about food at BlackBurn
+| 3 | | | What do people say about food at BlackBurn?
 | 4 | | | What resturants that are off campus can I use my MP bucks at?
 | 5 | | | Can I only use my Bison One Card for food?
 
