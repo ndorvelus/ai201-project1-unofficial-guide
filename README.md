@@ -14,7 +14,7 @@
      Example: "Student reviews of CS professors at [university] — useful because official
      course descriptions don't reflect teaching style, exam difficulty, or workload." -->
 
----
+--- Howard Dining is difficult to track down because they change things almost yearly.
 
 ## Document Sources
 
@@ -22,18 +22,19 @@
      Be specific: include URLs, subreddit names, forum thread titles, or file names.
      Aim for variety — sources that together cover different subtopics or perspectives. -->
 
-| # | Source | Type | URL or file path |
-|---|--------|------|-----------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
+| # | Source | Description | URL or location |
+|---|--------|-------------|-----------------|
+| 1 | Howard Dining Hub | Dining locations with addresses, hours and live OPEN/CLOSED status | https://howard.mydininghub.com/en/locations |
+| 2 | Howard Dining Hub | Dining Dollars / Mecca Dollars meal plan details (e.g. The Yard) | https://howard.mydininghub.com/en/meal-plans/meal-plan-options?cat=diningdollars-216958 |
+| 3 | Howard Dining Hub | Meal plans overview by class year | https://howard.mydininghub.com/en/meal-plans |
+| 4 | Howard Auxiliary Services | Where to use the Bison One Card, accepted currencies per location, and 2026–2027 meal plan changes | https://auxiliary.howard.edu/services/bison-one-card/where-use-your-card |
+| 5 | Howard Student Affairs (Housing) | Bison One Card and meal plan info for new students | https://studentaffairs.howard.edu/housing/move-in/bison-one-card-meal-plans |
+| 6 | Howard Auxiliary Services | Bison One Card mobile apps | https://auxiliary.howard.edu/services/bison-one-card/mobile-apps |
+| 7 | Howard Auxiliary Services | Summer programs and summer stay guests | https://auxiliary.howard.edu/services/bison-one-card/summer-programs-and-summer-stay-guests |
+| 8 | Howard Auxiliary Services | Bison One Card terms and conditions | https://auxiliary.howard.edu/services/bison-one-card/terms-conditions |
+| 9 | Howard Auxiliary Services | Laundry services paid with the Bison One Card | https://auxiliary.howard.edu/services/bison-one-card/laundry |
+| 10 | Reddit | r/HowardUniversity posts (top + hot), saved as individual post files | https://www.reddit.com/r/HowardUniversity/ |
+
 
 ---
 
@@ -46,13 +47,13 @@
      - Any preprocessing you did before chunking (e.g., stripping HTML, removing headers)
      - What your final chunk count was across all documents -->
 
-**Chunk size:**
+**Chunk size:** 256 tokens maximum . Chunks can be shorter because splits prefer natural boundaries.
 
-**Overlap:**
+**Overlap:** 26 tokens (~10% of 256), carried from the end of one chunk into the start of the next. The overlap is word-aligned, so a word is never cut in half.
 
-**Why these choices fit your documents:**
+**Why these choices fit your documents:** Most documents are short paragraphs or single sentences, so 256 tokens usually holds a complete idea (a dining hall's hours or a policy). Splitting is recursive: paragraphs first, then lines, sentences and words, with a hard token cut only as a last resort. Chunks therefore rarely end mid-sentence. The small overlap keeps a fact that straddles a boundary retrievable from either chunk without bloating the index. Boilerplate is stripped by `clean.py` before chunking.
 
-**Final chunk count:**
+**Final chunk count:** 57 chunks across 33 cleaned documents.
 
 ---
 
@@ -185,9 +186,9 @@ Just trying to plan and be prepared. So any additional info/tips you think might
      Consider: context length limits, multilingual support, accuracy on domain-specific text,
      latency, and local vs. API-hosted. -->
 
-**Model used:**
+**Model used:** `all-MiniLM-L6-v2` via `sentence-transformers`, run locally. Vectors are stored in a persistent ChromaDB collection (`howard_dining`) configured for cosine similarity. I chose it over my originally planned Gemini Embedding 2 because it is free, needs no API key, runs fast on a laptop, and my chunks (256 tokens max) fit comfortably inside its input limit.
 
-**Production tradeoff reflection:**
+**Production tradeoff reflection:** With cost removed as a constraint, I would weigh accuracy and latency first. MiniLM is small and fast, but it is weak on short, time-sensitive phrases like "right now" and on matching a person's role ("Junior") to a plan name, which is exactly where my retrieval tests missed. A larger or hosted model (for example a Gemini or OpenAI embedding model) would likely do better on that domain-specific wording, and would allow longer chunks because of larger context limits. The costs are API latency, per-call fees, sending text to a third party, and a dependency on the provider's uptime. I would give up multilingual support, since my corpus is English-only. A hybrid approach (keyword search for hours and names, embeddings for meaning) would also help.
 
 ---
 
@@ -245,9 +246,16 @@ Relevance explanation:
      Do not just say "I told it to use the documents" — show the actual instruction or explain
      the mechanism. -->
 
-**System prompt grounding instruction:**
+**System prompt grounding instruction:** The system prompt in [generate.py](scripts/generate.py) tells the model to answer from numbered CONTEXT passages only. The key rules are:
 
-**How source attribution is surfaced in the response:**
+1. "Use ONLY information stated in the numbered CONTEXT passages below. Never use outside knowledge, even if you are confident it is correct."
+2. "If the CONTEXT does not contain enough information to answer the question, reply with EXACTLY this sentence and nothing else: *I don't have information on that, but if you have any questions about the Bison One Card, feel free to ask!*"
+3. "Do not invent a fact, number, name, URL, or policy detail that is not stated in the CONTEXT."
+4. Cite supporting passages inline with their bracketed number, e.g. [1] or [2][3].
+
+Structural choices back this up: the top 5 retrieved chunks are formatted as `[n] (source: id) text` in the user message, temperature is 0, and if retrieval returns no chunks at all, the code returns the refusal string without calling the LLM. The model is `openai/gpt-oss-20b` on Groq (the originally planned Llama 4 Scout was removed from Groq's catalog).
+
+**How source attribution is surfaced in the response:** The "Sources" list is built in code from the chunks retrieval actually returned (one entry per source document: source id, description, URL). It is never parsed from the model's text, so it stays accurate even if the model cites wrongly. Inline `[n]` citations from the model appear in the answer body. When the answer is exactly the refusal string, the sources list is left empty so a non-answer is not attached to sources.
 
 ---
 
@@ -290,9 +298,9 @@ System response (refusal):
 <!-- Describe your query interface: what are the input fields, what does the output look like?
      Then provide a complete sample interaction transcript showing a real exchange. -->
 
-**Input fields:**
+**Input fields:** A single free-text question typed at the `>` prompt of the command-line interface ([cli.py](scripts/cli.py)), started with `python3 scripts/cli.py`. Type `quit` or `exit` to stop. Top-k is fixed at 5.
 
-**Output format:**
+**Output format:** Plain text: the answer (with inline `[n]` citations), then a `Sources:` list with one line per source document in the form `- <source_id>: <description> (<url>)`. Out-of-scope questions return the fixed refusal sentence and no sources.
 
 ---
 
@@ -315,11 +323,13 @@ System response (refusal):
 
 | # | Question | Expected answer | System response (summarized) | Retrieval quality | Response accuracy |
 |---|----------|-----------------|------------------------------|-------------------|-------------------|
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
+| 1 | What meal plans are available to me as a Junior?| The Crown Jewel, The Mecca, The Bison and The Yard (source 4 lists all four 2026–2027 plans; source 2 only labels The Yard as "Eligible for Juniors and Seniors") | | | |
+| 2 | What dining options are open right now?| Locations marked OPEN on the locations page (source 1), with hours, e.g. Bison Brew, Chick-Fil-A, Everbowl, The Halal Shack. Hours reflect the scrape date, not the live moment. | | | |
+| 3 | What do people say about food at BlackBurn?| Student opinions from Reddit about Blackburn food. The Reddit posts in the corpus do not mention Blackburn, so the correct behavior is a refusal. | | | |
+| 4 | What resturants that are off campus can I use my MP bucks at?| Meal Plan Bucks work at off-campus partners such as Roaming Rooster and Rush Bowls (source 2). The full partner list was an image and was not ingested, so a complete list is not expected. | | | |
+| 5 | Can I only use my Bison One Card for food?| No. It is also the university ID and is accepted at the Campus Store, Campus Connection (printing, mail), library services, and laundry (sources 4, 5, 9). | | | |
+
+The "System response", "Retrieval quality" and "Response accuracy" columns are not filled in yet. I have not been able to run these five questions end to end on my machine, and I will not guess at results.
 
 **Retrieval quality:** Relevant / Partially relevant / Off-target  
 **Response accuracy:** Accurate / Partially accurate / Inaccurate
@@ -339,13 +349,13 @@ System response (refusal):
      "The embedding model treated the professor's nickname as out-of-vocabulary and returned
      results from an unrelated review" is an explanation. -->
 
-**Question that failed:**
+**Question that failed:** "What dining options are open right now?"
 
-**What the system returned:**
+**What the system returned:** Retrieval put the locations page (source 1, the only document with OPEN/CLOSED status) in 4th place. The top results were meal-plan chunks ("Dining Halls & Meal Plans", "Campus Dining Made Easy", a meal-plan changes FAQ), with distances of 0.45 to 0.47.
 
-**Root cause (tied to a specific pipeline stage):**
+**Root cause (tied to a specific pipeline stage):** This is an embedding and retrieval failure. `all-MiniLM-L6-v2` matched on the general topic "dining options" and gave "right now" almost no weight, so it cannot tell a live-status listing from marketing text about meal plans. Chunking made it worse: the locations page is one long list of repeating blocks (name, address, hours, OPEN), so each chunk has little topical signal for the model to latch onto. Separately, the hours and OPEN/CLOSED flags were captured at scrape time, so even a perfect retrieval would describe the day of the scrape, not the current moment.
 
-**What you would change to fix it:**
+**What you would change to fix it:** Chunk the locations page one location per chunk with the name and hours in a consistent sentence ("Chick-Fil-A, Blackburn Student Center, open 8:30AM–9:00PM") so each chunk carries clear meaning. Add a keyword or metadata filter so time-related queries prefer source 1. Re-scrape on a schedule, and show the scrape date in the answer. A stronger embedding model, or a reranker over the top 10 results, would also help.
 
 ---
 
@@ -354,9 +364,9 @@ System response (refusal):
 <!-- Reflect on how planning.md shaped your implementation.
      Answer both questions with at least 2–3 sentences each. -->
 
-**One way the spec helped you during implementation:**
+**One way the spec helped you during implementation:** Writing the Documents and Chunking Strategy sections first forced me to decide on 256-token chunks and a source list before any code existed, so I could hand those sections straight to the AI tool and verify the output against concrete numbers (max 256 tokens per chunk, metadata on every chunk). The architecture diagram also kept the stages separate, which is why ingestion, embedding, retrieval and generation each live in their own script and could be tested one at a time.
 
-**One way your implementation diverged from the spec, and why:**
+**One way your implementation diverged from the spec, and why:** The spec called for Gemini Embedding 2, Claude as the generation model, and a 15% overlap (38 tokens). I ended up with a local `all-MiniLM-L6-v2` model to avoid API cost and latency, Groq's `openai/gpt-oss-20b` for generation, and a 10% overlap (26 tokens). I also never solved the planned challenge of the off-campus partner list being inside an image, which is why that question is weak in testing.
 
 ---
 
